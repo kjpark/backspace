@@ -105,6 +105,20 @@ concurrency
 #! /bin/bash
 sleep 3 & sleep 5 ; wait < <(jobs -p)
 # also wait -n / wait -f
+
+#! backspace
+:fn do_smth() -> :str {
+  .print "doing smth..."
+  core.sleep 3
+  "done"
+}
+
+pid = .fork do_smth()
+.wait pid
+
+pid = .fork () => {
+  .print "anon func"
+}
 ```
 
 ok turns out bash 4 has associative arrays so
